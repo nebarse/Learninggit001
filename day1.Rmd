@@ -1,0 +1,112 @@
+---
+title: "Untitled"
+author: "Bethelhem Kassa"
+date: "5/9/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+tidyverse_update()
+```
+```{r}
+#recreating dataset
+mtcars
+dput(mtcars)
+```
+
+```{r}
+#EXercise 3.2.4
+library(ggplot2)
+ggplot2::mpg
+
+ggplot(data=mpg,aes(x=displ,y=hwy,color=class))+ geom_point()
+
+ggplot(data=mpg,aes(x=displ,y=hwy,color=class))+ geom_point()+facet_wrap(~class,nrow=2)
+
+ggplot(data=mpg,aes(x=displ,y=hwy))+ geom_point(color="blue")
+
+#position = "jitter" adds a small amount of random noise to each point
+ggplot(data=mpg,aes(x=displ,y=hwy))+ geom_point(color="blue",position="jitter")
+
+ggplot(data=mpg,aes(x=displ,y=hwy))+ geom_smooth(color="blue")
+
+ggplot(data=mpg,aes(x=displ,y=hwy,linetype=drv))+ geom_smooth(color="blue")
+
+ggplot(data=mpg,aes(x=displ,y=hwy,color=displ<5))+ geom_point()
+
+str(mpg)
+
+ggplot(data=mpg,aes(x=cyl,y=hwy))+ geom_point()
+
+ggplot(data=mpg,aes(x=class,y=drv))+ geom_point()
+
+ggplot(data=mpg,aes(x=drv,y=cyl)) + geom_point()
+
+?geom_point
+```
+
+```{r}
+#plotting bar graph
+?diamonds
+
+ggplot(data=diamonds,aes(x=cut))+geom_bar()
+
+demo<-tribble(
+  ~a,        ~b,
+  "bar_1",   20,
+  "bar_2",   30,
+  "bar_3",   40
+)
+ggplot(data=demo)+geom_bar(mapping=aes(x=a,y=b),stat="identity")
+```
+
+```{r}
+ggplot(data=diamonds,aes(x=cut,y=depth))+geom_boxplot()
+
+ggplot(data=diamonds,aes(x=cut,y=..prop..,fill=color))+geom_bar()
+
+ggplot(data=diamonds,aes(x=cut,color=cut))+geom_bar()
+
+ggplot(data=diamonds,aes(x=cut,fill=clarity))+geom_bar()
+
+#position = "dodge" places overlapping objects directly beside one another
+ggplot(data=diamonds,aes(x=cut,fill=clarity))+geom_bar(position="dodge")
+
+ggplot(data=diamonds,aes(x=cut,fill=cut))+geom_bar()
+
+```
+```{r}
+ggplot(data=mpg,aes(x=cty,y=hwy))+geom_point()
+
+ggplot(data=mpg,aes(x=cty,y=hwy))+geom_point(position="jitter")
+```
+```{r}
+#coordinate system
+ggplot(data=mpg,aes(x=class,y=hwy))+geom_boxplot()
+
+ggplot(data=mpg,aes(x=class,y=hwy))+geom_boxplot()+coord_flip()
+```
+```{r}
+bar<-ggplot(data=diamonds,aes(x=cut,fill=cut),show.legend=FALSE,width=1)+geom_bar()+
+  theme(aspect.ratio=1)+labs(x=NULL,y=NULL)
+
+bar+coord_flip()
+
+#use polar coordinates that reveals an interesting connection between a bar chart and Coxcombo chart
+bar+coord_polar()
+```
+```{r}
+seq(1,10)
+ggplot(data= mpg,aes(x=displ,y= hwy))+
+  geom_point()
+
+filter(mpg,cyl==8)
+filter(diamonds, carat>3)
+
+
+```
+

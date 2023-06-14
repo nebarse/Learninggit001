@@ -1,0 +1,64 @@
+---
+title: "Day2"
+author: "Bethelhem Kassa"
+date: "5/26/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+jan1<-flights%>%
+  group_by(month)%>%
+  filter(month == 1, day==1)
+jan1
+
+
+dec25<-flights%>%
+  group_by(month)%>%
+  filter(month ==12, day ==25)
+dec25 
+
+
+nov_dec<-flights%>%
+  group_by(month)%>%
+  filter(month %in% c(11,12))
+nov_dec
+```
+```{r}
+flights%>%
+  filter(arr_delay >= 2)
+
+flights%>%
+  filter(dest == "IAH" | dest == "Hou")
+
+flights%>%
+ # group_by(month)%>%
+  filter(month == 7|month==8|month==9)
+
+flights%>%
+  filter(arr_delay > 2 &  dep_delay ==0)
+```
+```{r}
+arrange(flights, desc(arr_delay))
+arrange(flights, dep_time)%>%
+  tail()
+
+arrange(flights, dep_delay)
+arrange(flights, desc(is.na(dep_time)))     
+
+
+arrange(flights, air_time)
+arrange(flights, distance)%>%
+  tail()
+```
+```{r}
+select(flights, year:day)
+
+view(flights)
+```
+
